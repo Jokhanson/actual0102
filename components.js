@@ -28,8 +28,7 @@ const currentPath = window.location.pathname;
 document.querySelectorAll('.nav-link').forEach(link => {
     const linkPath = new URL(link.href).pathname;
 
-    // Совпадение точное, или оба указывают на корень сайта
-    const isRoot = (currentPath === '/' || currentPath.endsWith('/index.html'));
+    const isRoot = currentPath.endsWith('/') || currentPath.endsWith('/index.html');
     const linkIsRoot = linkPath.endsWith('/index.html');
 
     if (linkPath === currentPath || (isRoot && linkIsRoot)) {
