@@ -350,3 +350,14 @@ right: 16px;
 font-size: 32px;
 }
 }
+@media (max-width: 480px) {
+  .portfolio-item {
+    min-width: 60vw;
+    height: 80px;
+  }
+
+  .overlay-text {
+    font-size: 1rem;
+  }
+}
+
