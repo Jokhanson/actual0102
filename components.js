@@ -18,8 +18,8 @@ try {
 }
 
 async function initComponents() {
-await loadComponent(’#header-placeholder’, ‘/header.html’);
-await loadComponent(’#footer-placeholder’, ‘/footer.html’);
+await loadComponent(’#header-placeholder’, ‘./header.html’);
+await loadComponent(’#footer-placeholder’, ‘./footer.html’);
 
 ```
 // Подсвечиваем активный пункт меню по текущему URL
