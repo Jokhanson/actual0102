@@ -301,56 +301,8 @@ font-size: 36px;
 }
 }
 
-/* ── Мобильный (≤ 480px) ── */
 @media (max-width: 480px) {
 
-/* Слайдер коллекций */
-.portfolio-item {
-min-width: 220px;
-height: 100px;
-}
-
-.overlay-text {
-font-size: 1.2rem;
-}
-
-.section-title {
-font-size: 1.5rem;
-text-align: left;
-padding: 0 16px;
-}
-
-.section-description {
-text-align: left;
-padding: 0 16px;
-}
-
-/* Фотобиблиотека — 1 колонка */
-.photolibrary-grid {
-grid-template-columns: 1fr;
-gap: 10px;
-}
-
-/* Модальное окно — стрелки по краям экрана */
-.prev {
-left: 0;
-width: 20vw;
-font-size: 28px;
-}
-
-.next {
-right: 0;
-width: 20vw;
-font-size: 28px;
-}
-
-.close {
-top: 12px;
-right: 16px;
-font-size: 32px;
-}
-}
-@media (max-width: 480px) {
   .portfolio-item {
     min-width: 60vw;
     height: 80px;
@@ -359,5 +311,38 @@ font-size: 32px;
   .overlay-text {
     font-size: 1rem;
   }
-}
 
+  .section-title {
+    font-size: 1.5rem;
+    text-align: left;
+    padding: 0 16px;
+  }
+
+  .section-description {
+    text-align: left;
+    padding: 0 16px;
+  }
+
+  .photolibrary-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .prev {
+    left: 0;
+    width: 20vw;
+    font-size: 28px;
+  }
+
+  .next {
+    right: 0;
+    width: 20vw;
+    font-size: 28px;
+  }
+
+  .close {
+    top: 12px;
+    right: 16px;
+    font-size: 32px;
+  }
+}
