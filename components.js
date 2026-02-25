@@ -29,3 +29,17 @@ async function initComponents() {
 }
 
 document.addEventListener('DOMContentLoaded', initComponents);
+
+document.addEventListener('click', function(e) {
+    const burger = document.getElementById('burger');
+    const menu = document.getElementById('mobile-menu');
+    if (!burger || !menu) return;
+
+    if (e.target.closest('#burger')) {
+        burger.classList.toggle('open');
+        menu.classList.toggle('open');
+    } else if (!e.target.closest('.mobile-menu')) {
+        burger.classList.remove('open');
+        menu.classList.remove('open');
+    }
+});
