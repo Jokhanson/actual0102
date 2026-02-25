@@ -1,6 +1,4 @@
 document.addEventListener(‘DOMContentLoaded’, function () {
-
-```
 // ── Прокрутка слайдера коллекций ──────────────────────────
 const scrollLeft  = document.querySelector('.scroll-button.left');
 const scrollRight = document.querySelector('.scroll-button.right');
@@ -77,7 +75,5 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowLeft')  showPrev();
     if (e.key === 'ArrowRight') showNext();
     if (e.key === 'Escape')     closeModal();
-});
-```
-
+})
 });
