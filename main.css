@@ -725,12 +725,14 @@ animation: word-scroll 30s infinite cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Бургер скрыт на десктопе */
-.burger {
-  display: none;
-}
+@media (min-width: 769px) {
+  .burger {
+    display: none;
+  }
 
-.mobile-menu {
-  display: none;
+  .mobile-menu {
+    display: none !important;
+  }
 }
 
 
@@ -829,4 +831,5 @@ gap: 8px;
 gap: 16px;
 }
 }
+
 
