@@ -1,6 +1,11 @@
-async function loadComponent(selector, url) {
+async function loadComponent(selector, filename) {
     const element = document.querySelector(selector);
     if (!element) return;
+
+    // Считаем глубину вложенности по количеству папок в пути
+    const depth = window.location.pathname.split('/').filter(Boolean).length - 1;
+    const prefix = depth > 1 ? '../'.repeat(depth - 1) : './';
+    const url = prefix + filename;
 
     try {
         const response = await fetch(url);
@@ -12,8 +17,8 @@ async function loadComponent(selector, url) {
 }
 
 async function initComponents() {
-    await loadComponent('#header-placeholder', './header.html');
-    await loadComponent('#footer-placeholder', './footer.html');
+    await loadComponent('#header-placeholder', 'header.html');
+    await loadComponent('#footer-placeholder', 'footer.html');
 
     const currentPath = window.location.pathname;
 
@@ -28,8 +33,6 @@ async function initComponents() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', initComponents);
-
 document.addEventListener('click', function(e) {
     const burger = document.getElementById('burger');
     const menu = document.getElementById('mobile-menu');
@@ -43,3 +46,5 @@ document.addEventListener('click', function(e) {
         menu.classList.remove('open');
     }
 });
+
+document.addEventListener('DOMContentLoaded', initComponents);
