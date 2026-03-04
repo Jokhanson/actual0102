@@ -6,6 +6,7 @@ MAIN.CSS — общие стили для всех страниц Frame by Frame
 
 /* ── Сброс и базовые стили ── */
 body {
+overflow-y: scroll;
 font-family: ‘Open Sans’, sans-serif;
 margin: 0;
 padding: 0;
@@ -900,6 +901,7 @@ gap: 16px;
     font-size: 1.8rem;
   }
 }
+
 
 
 
