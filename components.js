@@ -2,10 +2,8 @@ async function loadComponent(selector, filename) {
     const element = document.querySelector(selector);
     if (!element) return;
 
-    // Считаем глубину вложенности по количеству папок в пути
-    const depth = window.location.pathname.split('/').filter(Boolean).length - 1;
-    const prefix = depth > 1 ? '../'.repeat(depth - 1) : './';
-    const url = prefix + filename;
+    const base = window.location.origin + '/actual0102/';
+    const url = base + filename;
 
     try {
         const response = await fetch(url);
