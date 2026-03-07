@@ -95,6 +95,17 @@ async function loadCollection() {
             collectionsGrid.appendChild(item);
         });
 
+        // Восстанавливаем позицию скролла
+const savedScroll = sessionStorage.getItem('scrollPos_' + id);
+if (savedScroll) {
+    setTimeout(() => window.scrollTo(0, parseInt(savedScroll)), 100);
+}
+
+// Сохраняем позицию скролла при уходе со страницы
+window.addEventListener('beforeunload', () => {
+    sessionStorage.setItem('scrollPos_' + id, window.scrollY);
+});
+
     } catch (err) {
         console.error('Ошибка загрузки:', err);
     }
