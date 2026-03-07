@@ -906,10 +906,8 @@ gap: 16px;
     position: fixed;
     bottom: 23px;
     right: 23px;
-    width: 0;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
+    width: 56px;
+    height: 56px;
     border: none;
     border-radius: 50%;
     background-color: #7aa8c7;
@@ -921,11 +919,13 @@ gap: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transform: scale(0);
+    opacity: 0;
 }
 
 .scroll-top.visible {
-    width: 56px;
-    height: 56px;
+    transform: scale(1);
+    opacity: 1;
 }
 
 .scroll-top:hover {
