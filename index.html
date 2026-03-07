@@ -187,36 +187,7 @@
     <div class="portfolio-container">
         <h2 class="section-title">Яркие коллекции</h2>
         <p class="section-description">Ознакомьтесь с коллекциями, которые являются примером авторского художественного видения и технического мастерства.</p>
-        <div class="portfolio-grid">
-            <div class="portfolio-item" onclick="window.location.href='./collections/collection1/collection1.html'">
-                <img src="./photo/photo4.jpg" alt="Сила взгляда">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Сила взгляда</h3>
-                    <p class="portfolio-category">Портреты</p>
-                </div>
-            </div>
-            <div class="portfolio-item" onclick="window.location.href='./collections/collection2/collection2.html'">
-                <img src="./photo/photo_06.jpg" alt="Взглянем поближе">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Взглянем поближе</h3>
-                    <p class="portfolio-category">Макро</p>
-                </div>
-            </div>
-            <div class="portfolio-item" onclick="window.location.href='./collections/collection3/collection3.html'">
-                <img src="./photo/IMG_6498.jpg" alt="Мир в деталях">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Мир в деталях</h3>
-                    <p class="portfolio-category">Природа</p>
-                </div>
-            </div>
-            <div class="portfolio-item" onclick="window.location.href='./collections/collection4/collection4.html'">
-                <img src="./photo/IMG_7691.jpg" alt="Миг чувств в кадре">
-                <div class="portfolio-overlay">
-                    <h3 class="portfolio-title">Миг чувств в кадре</h3>
-                    <p class="portfolio-category">Эмоции</p>
-                </div>
-            </div>
-        </div>
+        <div class="portfolio-grid" id="collections-grid"></div>
     </div>
 </section>
 
@@ -291,5 +262,32 @@
 
 <script src="./components.js"></script>
 <script src="./script.js"></script>
+<script>
+async function loadCollections() {
+    try {
+        const response = await fetch('https://jokhanson.github.io/actual0102/data.json');
+        const data = await response.json();
+
+        const grid = document.getElementById('collections-grid');
+        data.collections.forEach(collection => {
+            const item = document.createElement('div');
+            item.className = 'portfolio-item';
+            item.onclick = () => window.location.href = 'https://jokhanson.github.io/actual0102/collection.html?id=' + collection.id;
+            item.innerHTML = `
+                <img src="${collection.cover}" alt="${collection.title}">
+                <div class="portfolio-overlay">
+                    <h3 class="portfolio-title">${collection.title}</h3>
+                    <p class="portfolio-category">${collection.category}</p>
+                </div>
+            `;
+            grid.appendChild(item);
+        });
+    } catch (err) {
+        console.error('Ошибка загрузки коллекций:', err);
+    }
+}
+
+loadCollections();
+</script>
 </body>
 </html>
