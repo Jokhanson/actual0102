@@ -1,0 +1,192 @@
+const fs = require('fs');
+
+const allUrls = [
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8238_копия_resized_kcglc8.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8221_копия_resized_o09yib.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7971_копия_resized_ek9amo.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7496_копия_resized_ajxlgh.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7844_копия_resized_ugm1jf.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7970_копия_resized_vifmw1.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7816_копия_resized_fmfi6a.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7509_копия_resized_jdkozw.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7792_копия_resized_pqcp4o.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7724_копия_resized_xbtacu.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7969_копия_resized_tzznht.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8212_копия_resized_tewtxh.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7947_копия_resized_omn3jt.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7973_копия_resized_jcz9c8.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7976_копия_resized_pvgdvb.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8226_копия_resized_lnplgi.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7770_копия_resized_ugmk3v.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8171_копия_resized_mjcnnz.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7810_копия_resized_hjslme.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7613_копия_resized_epobpn.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7516_копия_resized_hwvx7j.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7544_копия_resized_rraxnr.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8158_копия_resized_wwmclr.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7908_копия_resized_hdce1i.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8169_копия_resized_brkqvl.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8027_копия_resized_xjkefz.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8222_копия_resized_h8v21t.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7755_копия_resized_xnjend.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8106_копия_resized_lc4mt7.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7680_копия_resized_selowg.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7967_копия_resized_qktuao.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8037_копия_resized_ysxkcf.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7857_копия_resized_vcorw9.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7535_копия_resized_wo8lak.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7654_копия_resized_gwk1ff.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7704_копия_resized_flbspf.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8204_копия_resized_veplxq.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7800_копия_resized_mucg4r.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7737_копия_resized_jawiic.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7728_копия_resized_iceoua.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7984_копия_resized_a5bcef.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7719_копия_resized_zzmes2.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7562_копия_resized_lkb5os.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8050_копия_resized_hm9aqh.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7952_копия_resized_llzpn8.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7484_копия_resized_owjhz4.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8061_копия_resized_ttyq1k.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8235_копия_resized_azpwro.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7881_копия_resized_nwqsv1.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_7483_копия_resized_muti8y.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8030_копия_resized_d4mtfj.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8082_копия_resized_vkpzv0.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8000_копия_resized_moomu8.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8968_копия_resized_kcyykz.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8974_копия_resized_gvolvd.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8968_копия_2_resized_cxomf8.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9245_копия_resized_ocqurh.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8989_копия_resized_sdhqqa.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9017_копия_resized_krizaj.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8975_копия_resized_drja2o.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9161_копия_2_resized_znem9f.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9017_копия_2_resized_ppcofw.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8987_копия_2_resized_umwwcg.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8975_копия_2_resized_yf0ita.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8974_копия_2_resized_jhomtq.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9116_копия_resized_gvqtur.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9042_копия_resized_berjf3.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9008_копия_resized_qe7se3.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9035_копия_resized_ldtpjf.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9067_копия_resized_jymfpr.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9035_копия_2_resized_imfgci.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8987_копия_resized_lp5zzs.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9166_копия_resized_daq4up.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9057_копия_resized_ksm5d3.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8951_копия_resized_kg8ykf.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9228_копия_resized_es3q2z.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8951_копия_1_resized_umqnce.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9203_копия_resized_gdfjls.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9102_копия_2_resized_blwsiz.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9161_копия_resized_ysozj0.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9098_копия_resized_cuatul.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9102_копия_resized_sdjkai.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9154_копия_resized_moylfb.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9546_resized_px1ylu.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9508_resized_czbqmu.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9395_копия_resized_dnjwef.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9588_копия_resized_b0eoer.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9646_resized_jczrba.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9636_resized_o4koly.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9494_копия_resized_qwcq69.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9426_копия_resized_woqrxp.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9403_resized_spupp2.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9518_resized_inijlv.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9322_копия_resized_b5kesr.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9495_копия_resized_iqyis0.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9425_копия_resized_un7buw.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9646_копия_resized_mma0tm.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9337_resized_d2ysn1.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9546_копия_resized_uez5ow.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9510_копия_resized_yfo3vv.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9319_resized_vlni13.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9573_копия_resized_uu9hk3.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9415_resized_lx53kf.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9322_resized_f0nuga.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9508_копия_resized_zpxsy8.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9343_копия_resized_fjm3hc.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9586_resized_oqplcv.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9494_resized_bex3hi.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9521_копия_resized_eau1hn.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9567_resized_elcf4n.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9415_копия_resized_k4wnhp.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9552_resized_gtlm4q.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9534_копия_resized_derb3o.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9510_resized_qh7wab.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9552_копия_resized_naregl.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9528_копия_resized_qucvqq.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9582_копия_resized_k3suob.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9425_resized_wrfut8.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9386_копия_resized_lhef7z.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9350_resized_oro3nl.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9588_resized_mnjrid.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9386_resized_ndynaq.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9652_копия_resized_uolxww.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9652_resized_mtmimx.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9567_копия_resized_picdse.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9319_копия_resized_zg338v.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9518_копия_resized_fncvc9.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9337_копия_resized_k413sg.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9343_resized_i26yd2.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9495_resized_uvvpvs.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9573_resized_wqj5dn.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9403_копия_resized_bo6xb7.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9521_resized_wduxdo.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9395_resized_mog1lz.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9582_resized_jlpknp.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9426_resized_tpnccu.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9528_resized_qhoznj.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9534_resized_ru4ufp.jpg",
+"https://res.cloudinary.com/domi2cpj1/image/upload/IMG_9350_копия_resized_oukmre.jpg"
+];
+
+// Фильтруем тестовые файлы Cloudinary
+const photos = allUrls.filter(url => !url.includes('cld-sample') && !url.includes('sample.jpg') && !url.includes('main-sample'));
+
+// Извлекаем номер IMG из имени файла
+function getImgNumber(url) {
+    const match = url.match(/IMG_(\d+)/);
+    return match ? parseInt(match[1]) : 0;
+}
+
+// Разбиваем по коллекциям
+const collection1 = photos.filter(url => { const n = getImgNumber(url); return n >= 7483 && n <= 8238; });
+const collection2 = photos.filter(url => { const n = getImgNumber(url); return n >= 8951 && n <= 9245; });
+const collection3 = photos.filter(url => { const n = getImgNumber(url); return n >= 9319 && n <= 9652; });
+
+const data = {
+    collections: [
+        {
+            id: "2026-01-03-Mi",
+            title: "Мы",
+            category: "Портреты",
+            description: "Описание фотосессии",
+            cover: collection1[0],
+            photos: collection1
+        },
+        {
+            id: "Vika",
+            title: "Вика",
+            category: "Портреты",
+            description: "Описание фотосессии",
+            cover: collection2[0],
+            photos: collection2
+        },
+        {
+            id: "2026-01-08-Lubimiy",
+            title: "Любимый",
+            category: "Портреты",
+            description: "Описание фотосессии",
+            cover: collection3[0],
+            photos: collection3
+        }
+    ]
+};
+
+fs.writeFileSync('data.json', JSON.stringify(data, null, 2));
+console.log('Готово!');
+console.log('Коллекция 1 (Мы):', collection1.length, 'фото');
+console.log('Коллекция 2 (Вика):', collection2.length, 'фото');
+console.log('Коллекция 3 (Любимый):', collection3.length, 'фото');
