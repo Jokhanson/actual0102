@@ -904,32 +904,31 @@ gap: 16px;
 
 .scroll-top {
     position: fixed;
-    bottom: 40px;
-    right: 40px;
-    width: 48px;
-    height: 48px;
-    background-color: #b8d4e8;
+    bottom: 23px;
+    right: 23px;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
     border: none;
     border-radius: 50%;
+    background-color: #7aa8c7;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='18 15 12 9 6 15'/%3E%3C/svg%3E");
+    background-position: center;
+    background-repeat: no-repeat;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    transition: all 0.3s cubic-bezier(0.25, 0.25, 0, 1);
     z-index: 999;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+    outline: none;
 }
 
 .scroll-top.visible {
-    opacity: 1;
-    pointer-events: auto;
+    width: 56px;
+    height: 56px;
 }
 
 .scroll-top:hover {
-    background-color: #9bbfd6;
-    transform: scale(1.1);
+    background-color: #5e93b8;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3), 0 3px 15px rgba(0,0,0,0.2);
 }
-
-
