@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame by Frame - Коллекция</title>
+    <link rel="icon" href="https://jokhanson.github.io/actual0102/photo/logo1.png">
+    <link rel="stylesheet" href="https://jokhanson.github.io/actual0102/main.css">
+    <link rel="stylesheet" href="https://jokhanson.github.io/actual0102/gallerystyles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+
+    <section class="photolibrary">
+        <div class="modal">
+            <span class="close">&times;</span>
+            <span class="prev">&#10094;</span>
+            <span class="next">&#10095;</span>
+            <img class="modal-content" id="modal-img">
+        </div>
+
+        <div class="photolibrary-container">
+            <div class="section-title" id="collection-title">Загрузка...</div>
+            <div class="section-description" id="collection-description"></div>
+            <div class="photolibrary-grid" id="photo-grid"></div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="https://jokhanson.github.io/actual0102/components.js"></script>
+    <script>
+    async function loadCollection() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        if (!id) {
+            document.getElementById('collection-title').textContent = 'Коллекция не найдена';
+            return;
+        }
+
+        try {
+            const response = await fetch('https://jokhanson.github.io/actual0102/data.json');
+            const data = await response.json();
+            const collection = data.collections.find(c => c.id === id);
+
+            if (!collection) {
+                document.getElementById('collection-title').textContent = 'Коллекция не найдена';
+                return;
+            }
+
+            document.title = 'Frame by Frame - ' + collection.title;
+            document.getElementById('collection-title').textContent = collection.title;
+            document.getElementById('collection-description').textContent = collection.description;
+
+            const grid = document.getElementById('photo-grid');
+            collection.photos.forEach(url => {
+                const item = document.createElement('div');
+                item.className = 'photolibrary-item';
+                const img = document.createElement('img');
+                img.src = url;
+                img.alt = collection.title;
+                item.appendChild(img);
+                grid.appendChild(item);
+            });
+
+            // Инициализируем модальное окно
+            initModal();
+
+        } catch (err) {
+            console.error('Ошибка загрузки:', err);
+        }
+    }
+
+    function initModal() {
+        const modal = document.querySelector('.modal');
+        const modalImg = document.getElementById('modal-img');
+        const closeBtn = document.querySelector('.close');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        const items = document.querySelectorAll('.photolibrary-item img');
+        let currentIndex = 0;
+
+        items.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                currentIndex = index;
+                modalImg.src = img.src;
+                modal.classList.add('active');
+            });
+        });
+
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + items.length) % items.length;
+            modalImg.src = items[currentIndex].src;
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % items.length;
+            modalImg.src = items[currentIndex].src;
+        });
+
+        document.addEventListener('keydown', e => {
+            if (modal.classList.contains('active')) {
+                if (e.key === 'ArrowLeft') prevBtn.click();
+                if (e.key === 'ArrowRight') nextBtn.click();
+                if (e.key === 'Escape') closeBtn.click();
+            }
+        });
+    }
+
+    loadCollection();
+    </script>
+</body>
+</html>
