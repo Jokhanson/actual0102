@@ -145,6 +145,18 @@ function initModal() {
 }
 loadCollection();
 </script>
-    
+  <button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 4l-8 8h5v8h6v-8h5z"/>
+    </svg>
+</button>
+
+<script>
+const scrollTopBtn = document.getElementById('scroll-top');
+window.addEventListener('scroll', () => {
+    const nearBottom = window.scrollY + window.innerHeight >= document.body.scrollHeight - 200;
+    scrollTopBtn.classList.toggle('visible', nearBottom);
+});
+</script>  
 </body>
 </html>
