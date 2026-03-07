@@ -2,7 +2,7 @@
   "collections": [
     {
       "id": "2026-01-03-Mi",
-      "title": "Мы",
+      "title": "Лыжная прогулка",
       "category": "Портреты",
       "description": "Описание фотосессии",
       "cover": "https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8238_копия_resized_kcglc8.jpg",
@@ -168,8 +168,8 @@
     },
     {
       "id": "Lena",
-      "title": "Description Lena",
-      "category": "Портрет",
+      "title": "Лена",
+      "category": "Портреты",
       "description": "Описание",
       "cover": "https://res.cloudinary.com/domi2cpj1/image/upload/IMG_8826_копия_resized_gxhz4z.jpg",
       "photos": [
