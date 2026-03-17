@@ -906,6 +906,10 @@ gap: 16px;
     white-space: normal;
     word-break: break-word;
 }
+  .overlay-description {
+    font-size: 11px;
+    opacity: 0.7;
+}
 }
 
 /* ── Soon Page ── */
