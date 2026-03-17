@@ -901,6 +901,11 @@ gap: 16px;
     overflow-x: auto;
     overflow-y: hidden;
 }
+  .overlay-title {
+    font-size: 13px;
+    white-space: normal;
+    word-break: break-word;
+}
 }
 
 /* ── Soon Page ── */
