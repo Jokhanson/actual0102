@@ -637,24 +637,45 @@ animation: word-scroll 30s infinite cubic-bezier(0.4, 0, 0.2, 1);
 
 /* ============================================================
 АДАПТИВНОСТЬ
-Брейкпоинты:
-— 768px : планшет / маленький ноутбук
-— 480px : мобильный телефон
 ============================================================ */
+
+.header-title {
+  display: none;
+}
+
+/* Бургер скрыт на десктопе */
+@media (min-width: 769px) {
+  .burger {
+    display: none;
+  }
+  .mobile-menu {
+    display: none !important;
+  }
+}
 
 /* ── Планшет (≤ 768px) ── */
 @media (max-width: 768px) {
 
-  /* Скрываем обычную навигацию и кнопки */
-  .nav {
-    display: none;
+  body {
+    overflow-x: hidden;
   }
 
-  .header-buttons {
-    display: none;
+  /* Header */
+  .nav { display: none; }
+  .header-buttons { display: none; }
+  .header-container { flex-wrap: nowrap; }
+
+  .header-title {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 0.5px;
+    flex: 1;
+    text-align: center;
   }
 
-  /* Показываем бургер */
+  /* Бургер */
   .burger {
     display: flex;
     flex-direction: column;
@@ -677,18 +698,11 @@ animation: word-scroll 30s infinite cubic-bezier(0.4, 0, 0.2, 1);
     transition: all 0.3s ease;
   }
 
-  /* Анимация бургера в крестик */
-  .burger.open span:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-  }
-  .burger.open span:nth-child(2) {
-    opacity: 0;
-  }
-  .burger.open span:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-  }
+  .burger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+  .burger.open span:nth-child(2) { opacity: 0; }
+  .burger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
 
-  /* Выпадающее меню */
+  /* Мобильное меню */
   .mobile-menu {
     display: none;
     flex-direction: column;
@@ -699,9 +713,7 @@ animation: word-scroll 30s infinite cubic-bezier(0.4, 0, 0.2, 1);
     border-top: 1px solid rgba(0,0,0,0.08);
   }
 
-  .mobile-menu.open {
-    display: flex;
-  }
+  .mobile-menu.open { display: flex; }
 
   .mobile-link {
     color: #000;
@@ -710,9 +722,7 @@ animation: word-scroll 30s infinite cubic-bezier(0.4, 0, 0.2, 1);
     transition: color 0.3s ease;
   }
 
-  .mobile-link:hover {
-    color: rgba(0,0,0,0.6);
-  }
+  .mobile-link:hover { color: rgba(0,0,0,0.6); }
 
   .mobile-buttons {
     display: flex;
@@ -720,288 +730,104 @@ animation: word-scroll 30s infinite cubic-bezier(0.4, 0, 0.2, 1);
     margin-top: 8px;
   }
 
-  /* Хедер на мобильном — убираем старые flex-wrap правки */
-  .header-container {
-    flex-wrap: nowrap;
-  }
-}
+  /* Hero */
+  .hero { overflow: hidden; }
 
-/* Бургер скрыт на десктопе */
-@media (min-width: 769px) {
-  .burger {
-    display: none;
-  }
-
-  .mobile-menu {
-    display: none !important;
-  }
-}
-
-
-/* ── Мобильный (≤ 480px) ── */
-@media (max-width: 480px) {
-
-/* Отключаем hover-расширение gallery-item на тач — там оно не нужно */
-.gallery-item:hover {
-width: 100px;
-}
-
-.gallery-item.expanded {
-width: 100px;
-}
-
-/* Header — прячем кнопки совсем, оставляем только nav */
-.header-buttons {
-display: none;
-}
-
-.nav {
-gap: 14px;
-}
-
-.nav-link {
-font-size: 13px;
-}
-
-/* Hero */
-.title {
-font-size: 1.8rem;
-margin: 12px 0;
-}
-
-.description {
-font-size: 0.9rem;
-}
-
-.loader {
-font-size: 18px;
-padding: 8px;
-}
-
-.hero {
-padding: 30px 0;
-}
-
-/* Portfolio grid — 1 колонка */
-.portfolio-grid {
-grid-template-columns: 1fr;
-}
-
-.section-title {
-font-size: 1.5rem;
-}
-
-.section-description {
-font-size: 0.9rem;
-}
-
-/* About */
-.about-profiles {
-flex-direction: column;
-align-items: center;
-gap: 30px;
-}
-
-.about {
-padding: 50px 0;
-}
-
-/* Contact cards — на всю ширину */
-.contact-options {
-flex-direction: column;
-align-items: center;
-gap: 20px;
-}
-
-.card {
-width: 85vw;
-max-width: 320px;
-}
-
-.contact {
-padding: 50px 0;
-}
-
-/* Footer */
-.footer-nav {
-flex-direction: column;
-align-items: center;
-gap: 8px;
-}
-
-.social-links {
-gap: 16px;
-}
-}
-.header-title {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .header-title {
-    display: block;
-    font-size: 16px;
-    font-weight: 700;
-    color: #000;
-    letter-spacing: 0.5px;
-    flex: 1;
-    text-align: center;
-  }
-  
-.hero-container {
-    flex-direction: column;
-    align-items: center;
-}
-
-.hero-content {
-    width: 100%;
-}
-
-.gallery-scroll {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.gallery-item {
-    width: 80px;
-    height: 200px;
-}
-
-.gallery-item.expanded {
-    width: 220px;
-}
-  body {
-    overflow-x: hidden;
-}
-
-.hero {
-    overflow: hidden;
-}
-
-.hero-container {
+  .hero-container {
     flex-direction: column;
     align-items: flex-start;
     overflow: hidden;
-}
+  }
 
-.hero-content {
+  .hero-content {
     width: 100%;
     padding: 0 20px;
     box-sizing: border-box;
-}
+  }
 
-.title {
+  .title {
     font-size: 2rem;
     word-break: break-word;
-}
+  }
 
-.gallery-scroll {
+  .gallery-scroll {
     width: 100vw;
-    margin-left: 0;
+    margin-top: 20px;
     overflow-x: auto;
     overflow-y: hidden;
-}
+  }
+
+  .gallery-item {
+    width: 80px;
+    height: 200px;
+  }
+
+  .gallery-item.expanded {
+    width: 220px;
+  }
+
+  /* Overlay */
   .overlay-title {
     font-size: 13px;
     white-space: normal;
     word-break: break-word;
-}
+  }
+
   .overlay-description {
     font-size: 11px;
     opacity: 0.7;
-}
-}
+  }
 
-/* ── Soon Page ── */
-.soon-section {
-  background: linear-gradient(to right, #FFFFFF, #FFE6D6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 120px 20px;
-}
+  /* Portfolio */
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 
-.soon-container {
-  text-align: center;
-  max-width: 600px;
-}
-
-.soon-badge {
-  display: inline-block;
-  background-color: #ffb080;
-  color: white;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 6px 18px;
-  border-radius: 20px;
-  margin-bottom: 24px;
-}
-
-.soon-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #000;
-  margin: 0 0 16px;
-  line-height: 1.2;
-}
-
-.soon-description {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 36px;
-}
-
-.soon-buttons {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-@media (max-width: 480px) {
-  .soon-title {
-    font-size: 1.8rem;
+  .portfolio-item {
+    margin: 0;
+    height: 200px;
   }
 }
 
-.gallery-item {
-    width: 70px;
-    height: 160px;
-}
+/* ── Мобильный (≤ 480px) ── */
+@media (max-width: 480px) {
 
-.gallery-item.expanded {
-    width: 180px;
-}
+  .gallery-item:hover { width: 80px; }
+  .gallery-item.expanded { width: 180px; }
+  .gallery-item { height: 160px; }
 
-.scroll-top {
-    position: fixed;
-    bottom: 23px;
-    right: 23px;
-    width: 56px;
-    height: 56px;
-    border: none;
-    border-radius: 50%;
-    background-color: #7aa8c7;
-    cursor: pointer;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
-    transition: all 0.3s cubic-bezier(0.25, 0.25, 0, 1);
-    z-index: 999;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: scale(0);
-    opacity: 0;
-}
+  .header-buttons { display: none; }
+  .nav { gap: 14px; }
+  .nav-link { font-size: 13px; }
 
-.scroll-top.visible {
-    transform: scale(1);
-    opacity: 1;
-}
+  .title { font-size: 1.8rem; margin: 12px 0; }
+  .description { font-size: 0.9rem; }
+  .loader { font-size: 18px; padding: 8px; }
+  .hero { padding: 30px 0; }
 
-.scroll-top:hover {
-    background-color: #5e93b8;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.3), 0 3px 15px rgba(0,0,0,0.2);
+  .portfolio-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .portfolio-item {
+    margin: 0;
+    height: 180px;
+  }
+
+  .section-title { font-size: 1.5rem; }
+  .section-description { font-size: 0.9rem; }
+
+  .about-profiles { flex-direction: column; align-items: center; gap: 30px; }
+  .about { padding: 50px 0; }
+
+  .contact-options { flex-direction: column; align-items: center; gap: 20px; }
+  .card { width: 85vw; max-width: 320px; }
+  .contact { padding: 50px 0; }
+
+  .footer-nav { flex-direction: column; align-items: center; gap: 8px; }
+  .social-links { gap: 16px; }
+
+  .soon-title { font-size: 1.8rem; }
 }
